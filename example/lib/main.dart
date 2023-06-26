@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     _checkAppUpgrade();
-    _getInstallMarket();
+    // _getInstallMarket();
     _getAppInfo();
     super.initState();
   }
@@ -63,7 +63,6 @@ class _HomeState extends State<Home> {
       cancelText: '以后再说',
       okText: '马上升级',
       iosAppId: 'id88888888',
-      appMarketInfo: AppMarket.huaWei,
       onCancel: () {
         print('onCancel');
       },
@@ -84,6 +83,7 @@ class _HomeState extends State<Home> {
     return Future.delayed(Duration(seconds: 1), () {
       return AppUpgradeInfo(
         title: '新版本V1.1.1',
+        apkDownloadUrl: "http://download.tensorflow.org/deps/tflite/TfLiteCameraDemo.apk",
         contents: [
           '1、支持立体声蓝牙耳机，同时改善配对性能',
           '2、提供屏幕虚拟键盘',

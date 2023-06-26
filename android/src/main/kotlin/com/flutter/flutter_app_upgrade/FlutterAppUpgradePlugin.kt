@@ -1,5 +1,6 @@
 package com.flutter.flutter_app_upgrade
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -44,11 +45,11 @@ public class FlutterAppUpgradePlugin : FlutterPlugin, MethodCallHandler, Activit
   }
 
   companion object {
-    lateinit var mContext: Context
+    lateinit var mContext: Activity
 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      this.mContext = registrar.activity()
+      this.mContext = registrar.activity()!!
       val channel = MethodChannel(registrar.messenger(), "flutter_app_upgrade")
       channel.setMethodCallHandler(FlutterAppUpgradePlugin())
     }

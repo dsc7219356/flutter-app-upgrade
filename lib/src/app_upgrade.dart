@@ -50,21 +50,21 @@ class AppUpgrade {
   static appUpgrade(
     BuildContext context,
     Future<AppUpgradeInfo> future, {
-    TextStyle titleStyle,
-    TextStyle contentStyle,
-    String cancelText,
-    TextStyle cancelTextStyle,
-    String okText,
-    TextStyle okTextStyle,
-    List<Color> okBackgroundColors,
-    Color progressBarColor,
-    double borderRadius = 20.0,
-    String iosAppId,
-    AppMarketInfo appMarketInfo,
-    VoidCallback onCancel,
-    VoidCallback onOk,
-    DownloadProgressCallback downloadProgress,
-    DownloadStatusChangeCallback downloadStatusChange,
+    TextStyle? titleStyle,
+    TextStyle? contentStyle,
+    String? cancelText,
+    TextStyle? cancelTextStyle,
+    String? okText,
+    TextStyle? okTextStyle,
+    List<Color>? okBackgroundColors,
+    Color? progressBarColor,
+    double? borderRadius = 20.0,
+    String? iosAppId,
+    AppMarketInfo? appMarketInfo,
+    VoidCallback? onCancel,
+    VoidCallback? onOk,
+    DownloadProgressCallback? downloadProgress,
+    DownloadStatusChangeCallback? downloadStatusChange,
   }) {
     future.then((AppUpgradeInfo appUpgradeInfo) {
       if (appUpgradeInfo != null && appUpgradeInfo.title != null) {
@@ -100,23 +100,23 @@ class AppUpgrade {
     BuildContext context,
     String title,
     List<String> contents, {
-    String apkDownloadUrl,
+    String? apkDownloadUrl,
     bool force = false,
-    TextStyle titleStyle,
-    TextStyle contentStyle,
-    String cancelText,
-    TextStyle cancelTextStyle,
-    String okText,
-    TextStyle okTextStyle,
-    List<Color> okBackgroundColors,
-    Color progressBarColor,
-    double borderRadius = 20.0,
-    String iosAppId,
-    AppMarketInfo appMarketInfo,
-    VoidCallback onCancel,
-    VoidCallback onOk,
-    DownloadProgressCallback downloadProgress,
-    DownloadStatusChangeCallback downloadStatusChange,
+    TextStyle? titleStyle,
+    TextStyle? contentStyle,
+    String? cancelText,
+    TextStyle? cancelTextStyle,
+    String? okText,
+    TextStyle? okTextStyle,
+    List<Color>? okBackgroundColors,
+    Color? progressBarColor,
+    double? borderRadius = 20.0,
+    String? iosAppId,
+    AppMarketInfo? appMarketInfo,
+    VoidCallback? onCancel,
+    VoidCallback? onOk,
+    DownloadProgressCallback? downloadProgress,
+    DownloadStatusChangeCallback? downloadStatusChange,
   }) {
     showDialog(
         context: context,
@@ -129,7 +129,7 @@ class AppUpgrade {
             child: Dialog(
                 shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.all(Radius.circular(borderRadius))),
+                        BorderRadius.all(Radius.circular(borderRadius!))),
                 child: SimpleAppUpgradeWidget(
                   title: title,
                   titleStyle: titleStyle,
@@ -161,7 +161,7 @@ class AppUpgrade {
 }
 
 class AppInfo {
-  AppInfo({this.versionName, this.versionCode, this.packageName});
+  AppInfo({required this.versionName, required this.versionCode, required this.packageName});
 
   String versionName;
   String versionCode;
@@ -170,9 +170,9 @@ class AppInfo {
 
 class AppUpgradeInfo {
   AppUpgradeInfo(
-      {@required this.title,
-      @required this.contents,
-      this.apkDownloadUrl,
+      {required this.title,
+      required this.contents,
+      required this.apkDownloadUrl,
       this.force = false});
 
   ///
