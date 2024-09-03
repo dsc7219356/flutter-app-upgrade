@@ -136,6 +136,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Stack(
         children: <Widget>[
           _buildInfoWidget(context),
@@ -201,7 +202,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   _buildAction() {
     return Column(
       children: <Widget>[
-        Divider(
+        Container(
           height: 1,
           color: Colors.grey,
         ),
@@ -225,6 +226,14 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   /// 取消按钮
   ///
   _buildCancelActionButton() {
+    var _okBackgroundColors = widget.okBackgroundColors;
+    if (widget.okBackgroundColors == null ||
+        widget.okBackgroundColors!.length != 2) {
+      _okBackgroundColors = [
+        Theme.of(context).primaryColor,
+        Theme.of(context).primaryColor
+      ];
+    }
     return Ink(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
