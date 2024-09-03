@@ -136,6 +136,10 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius!)),
+    ),
       child: Stack(
         children: <Widget>[
           _buildInfoWidget(context),
@@ -172,7 +176,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   /// 构建标题
   ///
   _buildTitle() {
-    return Padding(
+    return Container(
         padding: EdgeInsets.only(top: 20, bottom: 30),
         child: Text(widget.title ?? '', style: widget.titleStyle ?? TextStyle(fontSize: 22)));
   }
@@ -211,13 +215,6 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
                 : Expanded(
                     child: _buildCancelActionButton(),
                   ),
-            Visibility(
-                visible: !widget.force!,
-                child: Container(
-                  height: 45,
-                  width: 0.25,
-                  color: Colors.grey,
-                )),
             Expanded(
               child: _buildOkActionButton(),
             ),
@@ -231,16 +228,20 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   /// 取消按钮
   ///
   _buildCancelActionButton() {
-    var _okBackgroundColors = widget.okBackgroundColors;
-    if (widget.okBackgroundColors == null || widget.okBackgroundColors!.length != 2) {
-      _okBackgroundColors = [Theme.of(context).primaryColor, Theme.of(context).primaryColor];
-    }
     return Ink(
       decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(widget.borderRadius!))),
       child: InkWell(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(widget.borderRadius!)),
           child: Container(
             height: 45,
+            decoration: BoxDecoration(
+              border: Border(
+                right: BorderSide(
+                  width: 0.25,//宽度
+                  color: Colors.grey,
+                ),
+              ),
+            ),
             alignment: Alignment.center,
             child: Text(widget.cancelText ?? '以后再说', style: widget.cancelTextStyle ?? TextStyle()),
           ),
@@ -276,7 +277,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
         child: Container(
           height: 45,
           alignment: Alignment.center,
-          child: Text(widget.okText ?? '立即体验', style: widget.okTextStyle ?? TextStyle(color: Colors.white)),
+          child: Text(widget.okText ?? '立即体验', style: widget.okTextStyle ?? TextStyle()),
         ),
         onTap: () {
           _clickOk();
