@@ -174,8 +174,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   _buildTitle() {
     return Padding(
         padding: EdgeInsets.only(top: 20, bottom: 30),
-        child: Text(widget.title ?? '',
-            style: widget.titleStyle ?? TextStyle(fontSize: 22)));
+        child: Text(widget.title ?? '', style: widget.titleStyle ?? TextStyle(fontSize: 22)));
   }
 
   ///
@@ -209,14 +208,16 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
           children: <Widget>[
             widget.force!
                 ? Container()
-                : Row(
-              children: [
-                Expanded(
-                  child: _buildCancelActionButton(),
-                ),
-                Container(height: 45,color:    Colors.grey,width: 0.25,)
-              ],
-            ),
+                : Expanded(
+                    child: _buildCancelActionButton(),
+                  ),
+            Visibility(
+                visible: !widget.force!,
+                child: Container(
+                  height: 45,
+                  width: 0.25,
+                  color: Colors.grey,
+                )),
             Expanded(
               child: _buildOkActionButton(),
             ),
@@ -231,25 +232,17 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   ///
   _buildCancelActionButton() {
     var _okBackgroundColors = widget.okBackgroundColors;
-    if (widget.okBackgroundColors == null ||
-        widget.okBackgroundColors!.length != 2) {
-      _okBackgroundColors = [
-        Theme.of(context).primaryColor,
-        Theme.of(context).primaryColor
-      ];
+    if (widget.okBackgroundColors == null || widget.okBackgroundColors!.length != 2) {
+      _okBackgroundColors = [Theme.of(context).primaryColor, Theme.of(context).primaryColor];
     }
     return Ink(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(widget.borderRadius!))),
+      decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(widget.borderRadius!))),
       child: InkWell(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(widget.borderRadius!)),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(widget.borderRadius!)),
           child: Container(
             height: 45,
             alignment: Alignment.center,
-            child: Text(widget.cancelText ?? '以后再说',
-                style: widget.cancelTextStyle ?? TextStyle()),
+            child: Text(widget.cancelText ?? '以后再说', style: widget.cancelTextStyle ?? TextStyle()),
           ),
           onTap: () {
             widget.onCancel?.call();
@@ -262,20 +255,14 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   /// 确定按钮
   ///
   _buildOkActionButton() {
-    var borderRadius =
-        BorderRadius.only(bottomRight: Radius.circular(widget.borderRadius!));
+    var borderRadius = BorderRadius.only(bottomRight: Radius.circular(widget.borderRadius!));
     if (widget.force!) {
       borderRadius = BorderRadius.only(
-          bottomRight: Radius.circular(widget.borderRadius!),
-          bottomLeft: Radius.circular(widget.borderRadius!));
+          bottomRight: Radius.circular(widget.borderRadius!), bottomLeft: Radius.circular(widget.borderRadius!));
     }
     var _okBackgroundColors = widget.okBackgroundColors;
-    if (widget.okBackgroundColors == null ||
-        widget.okBackgroundColors!.length != 2) {
-      _okBackgroundColors = [
-        Theme.of(context).primaryColor,
-        Theme.of(context).primaryColor
-      ];
+    if (widget.okBackgroundColors == null || widget.okBackgroundColors!.length != 2) {
+      _okBackgroundColors = [Theme.of(context).primaryColor, Theme.of(context).primaryColor];
     }
     return Ink(
       decoration: BoxDecoration(
@@ -289,8 +276,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
         child: Container(
           height: 45,
           alignment: Alignment.center,
-          child: Text(widget.okText ?? '立即体验',
-              style: widget.okTextStyle ?? TextStyle(color: Colors.white)),
+          child: Text(widget.okText ?? '立即体验', style: widget.okTextStyle ?? TextStyle(color: Colors.white)),
         ),
         onTap: () {
           _clickOk();
@@ -307,8 +293,8 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
         LiquidLinearProgressIndicator(
           value: _downloadProgress,
           direction: Axis.vertical,
-          valueColor: AlwaysStoppedAnimation(widget.progressBarColor ??
-              Theme.of(context).primaryColor.withOpacity(0.4)),
+          valueColor:
+              AlwaysStoppedAnimation(widget.progressBarColor ?? Theme.of(context).primaryColor.withOpacity(0.4)),
           borderRadius: widget.borderRadius!,
         );
   }
@@ -364,7 +350,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
     } catch (e) {
       print('$e');
       _downloadProgress = 0;
-      _updateDownloadStatus(DownloadStatus.error,error: e);
+      _updateDownloadStatus(DownloadStatus.error, error: e);
     }
   }
 
