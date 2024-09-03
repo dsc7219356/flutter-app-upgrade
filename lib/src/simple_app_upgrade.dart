@@ -136,7 +136,6 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Stack(
         children: <Widget>[
           _buildInfoWidget(context),
@@ -203,16 +202,21 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
     return Column(
       children: <Widget>[
         Container(
-          height: 1,
+          height: 0.25,
           color: Colors.grey,
         ),
         Row(
           children: <Widget>[
             widget.force!
                 ? Container()
-                : Expanded(
-                    child: _buildCancelActionButton(),
-                  ),
+                : Row(
+              children: [
+                Expanded(
+                  child: _buildCancelActionButton(),
+                ),
+                Container(height: 45,color:    Colors.grey,width: 0.25,)
+              ],
+            ),
             Expanded(
               child: _buildOkActionButton(),
             ),

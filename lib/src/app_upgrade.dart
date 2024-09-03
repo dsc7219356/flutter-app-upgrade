@@ -125,6 +125,7 @@ class AppUpgrade {
           return PopScope(
             canPop: false,
             child: Dialog(
+              backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.all(Radius.circular(borderRadius!))),
